@@ -1,5 +1,5 @@
-import { KeyInfoType } from '../../App'
 import { LetterStatusEnum } from '../Letter'
+import { KeyInfoType } from '../TypingClub'
 import { Props as WordProps } from '../Word'
 
 /**
