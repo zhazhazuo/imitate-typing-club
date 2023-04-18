@@ -1,0 +1,62 @@
+.keyboard {
+  width: 685px;
+  height: 100vh;
+
+  .keyboard-item {
+    fill: none;
+    stroke: #777777;
+    stroke-width: 0.5;
+    stroke-miterlimit: 10;
+
+    &--hint {
+      fill: #79bbff;
+    }
+
+    &--correct {
+      fill: #79bbff;
+      stroke: #c2ea9a;
+      stroke-width: 4;
+    }
+
+    &--incorrect {
+      fill: #e97e7e;
+    }
+  }
+
+
+  .keyboard-item-letter {
+    font-family: 'ArialMT', 'Arial', 'Helvetica', 'sans-serif';
+    font-size: 15px;
+    opacity: 1;
+    fill: #777777;
+
+    &--hint {
+      fill: #fff;
+    }
+
+
+    &--correct {
+      fill: #fff;
+    }
+
+    &--incorrect {
+      fill: #fff;
+    }
+  }
+
+  .keyboard-item-letter--hidden {
+    opacity: 0;
+  }
+
+  .s {
+    font-size: 12px;
+  }
+
+  .keyboard-item--bold {
+    font-size: 24px;
+  }
+
+  .active {
+    fill: #79bbff;
+  }
+}
