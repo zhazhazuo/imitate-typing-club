@@ -5,8 +5,6 @@ import Teleprompter from '../Teleprompter'
 import Keyboard from '../Keyboard'
 import './index.scss'
 
-const targetKeyList = ['q', 'w', 'q', 'w', 'q', 'q', 'q', 'q']
-
 const disableEvent = (e: KeyboardEvent) => {
   e.defaultPrevented
   e.stopPropagation()
@@ -14,13 +12,15 @@ const disableEvent = (e: KeyboardEvent) => {
 
 export type KeyInfoType = Pick<KeyboardEvent, 'code' | 'key'>
 
-interface IProps { }
+interface IProps {
+  questionsList: string[][]
+}
 
 interface IDefaultProps { }
 
 type Props = IProps & Partial<IDefaultProps>
 
-const TypingClub: FC<Props> = (props) => {
+const TypingClub: FC<Props> = ({ questionsList }) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [currentKeyList, setCurrentKeyList] = useState<KeyInfoType[]>([])
 
@@ -44,7 +44,7 @@ const TypingClub: FC<Props> = (props) => {
   }, [])
 
   useEffect(() => {
-    if (currentKeyList.length === targetKeyList.length) {
+    if (currentKeyList.length === questionsList.reduce((acc, item) => acc.concat(item), []).length) {
       console.log('DONE!')
     }
   }, [currentKeyList])
@@ -58,11 +58,11 @@ const TypingClub: FC<Props> = (props) => {
     <div className="typing-club">
       {/* 提词器区域 */}
       <div className='typing-club__teleprompter'>
-        <Teleprompter questionsList={[targetKeyList]} currentAnswerList={currentKeyList} />
+        <Teleprompter questionsList={questionsList} currentAnswerList={currentKeyList} />
       </div>
       {/* 键盘区域 */}
       <div className='typing-club__keyboard'>
-        <Keyboard questionsList={[targetKeyList]} currentAnswerList={currentKeyList} />
+        <Keyboard questionsList={questionsList} currentAnswerList={currentKeyList} />
       </div>
       {/* 隐式 Input 元素，收集 focus */}
       <input className="typing-club__input" ref={inputRef} type="text" autoComplete="off" autoCorrect="off" autoCapitalize="off" autoFocus={true} aria-hidden="true" />
