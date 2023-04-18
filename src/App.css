@@ -1,4 +1,8 @@
 #root {
+  --color-primary: #0a6bf9;
+  --color-correct: #c2ea9a;
+  --color-incorrect: #e97e7e;
+
   width: 100vw;
   height: 100vh;
 }
@@ -8,6 +12,7 @@
   height: 100%;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

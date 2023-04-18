@@ -1,6 +1,5 @@
 .keyboard {
   width: 685px;
-  height: 100vh;
 
   .keyboard-item {
     fill: none;
@@ -9,17 +8,17 @@
     stroke-miterlimit: 10;
 
     &--hint {
-      fill: #79bbff;
+      fill: var(--color-primary);
     }
 
     &--correct {
-      fill: #79bbff;
-      stroke: #c2ea9a;
+      fill: var(--color-primary);
+      stroke: var(--color-correct);
       stroke-width: 4;
     }
 
     &--incorrect {
-      fill: #e97e7e;
+      fill: var(--color-incorrect);
     }
   }
 
@@ -57,6 +56,6 @@
   }
 
   .active {
-    fill: #79bbff;
+    fill: var(--color-primary);
   }
 }

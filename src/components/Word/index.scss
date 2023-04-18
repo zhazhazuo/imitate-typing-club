@@ -1,0 +1,13 @@
+.word {
+  width: 100%;
+  border-radius: 4px;
+
+  white-space: nowrap;
+  font-size: 35px;
+
+  &__cursor {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-primary);
+  }
+}

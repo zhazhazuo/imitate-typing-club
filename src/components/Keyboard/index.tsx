@@ -2,7 +2,7 @@ import React, { FC, useEffect, useMemo, useRef, useState } from "react";
 import { ReactSVG } from 'react-svg'
 import { compose, tap } from "ramda";
 
-import { initEveryKey, filterLetter, highlightTagetKey, highlightCurretnKey } from "./logic";
+import { initEveryKey, filterLetter, initHighlightTagetKey, highlightCurretnKey } from "./logic";
 import KeyboardSvg from '../../assets/keyboard-ansi.svg'
 import './index.scss'
 
@@ -28,7 +28,7 @@ const Keyboard: FC<Props> = (props) => {
 	const [isInit, setIsInit] = useState(false)
 
 	const initSVG = compose(
-		tap(highlightTagetKey(targetKey)),
+		tap(initHighlightTagetKey(targetKey)),
 		tap(filterLetter({
 			isLowCase,
 		})),

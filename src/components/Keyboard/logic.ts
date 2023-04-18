@@ -63,7 +63,7 @@ export const initEveryKey = (svg: SVGGElement) => {
 /**
  * 高亮目标按键
  */
-export const highlightTagetKey = curry((targetId: string, svg: SVGGElement) => {
+export const initHighlightTagetKey = curry((targetId: string, svg: SVGGElement) => {
   handleKey(svg, ({ id, classList }) => {
     if (id.split('-')[0] === targetId) {
       classList.add(KEY_ITEM_TARGET_HINT)
@@ -112,9 +112,9 @@ export const highlightCurretnKey = curry(({
       if (id.split('-')[0] === target) {
         classList.add(KEY_ITEM_TARGET_HINT)
       }
+
+      clearTimeout(timer)
     }, 200)
-
-
   })
 
   handleLetters(svg, ({ textContent, classList }) => {
@@ -140,6 +140,8 @@ export const highlightCurretnKey = curry(({
       if (textContent === target) {
         classList.add(KEY_ITEM_LETTER_HINT)
       }
+
+      clearTimeout(timer)
     }, 200)
 
 
