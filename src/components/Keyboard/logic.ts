@@ -1,4 +1,6 @@
-import { curry } from "ramda"
+import { compose, curry } from "ramda"
+import { removeKey, tailSVGID, toHump } from "../../common/utils"
+import { KeyInfoType } from "../TypingClub"
 
 const LOW_CASE_LETTER = 'qwertyuiopasdfghjklzxcvbnm'
 
@@ -63,7 +65,7 @@ export const initEveryKey = (svg: SVGGElement) => {
 /**
  * 高亮目标按键
  */
-export const initHighlightTagetKey = curry((targetId: string, svg: SVGGElement) => {
+export const initHighlightTargetKey = curry((targetId: string, svg: SVGGElement) => {
   handleKey(svg, ({ id, classList }) => {
     if (id.split('-')[0] === targetId) {
       classList.add(KEY_ITEM_TARGET_HINT)
@@ -77,22 +79,25 @@ export const initHighlightTagetKey = curry((targetId: string, svg: SVGGElement) 
   })
 })
 
-interface IHighlightCurretnKeyInfo {
+interface IHighlightCurrentKeyInfo {
   target: string
-  current?: string
+  current?: KeyInfoType
 }
 
 /**
  * 高亮当前点击按键
  */
-export const highlightCurretnKey = curry(({
+export const highlightCurrentKey = curry(({
   target, current
-}: IHighlightCurretnKeyInfo, svg: SVGGElement) => {
-  console.log('highlightCurretnKey', target, current)
+}: IHighlightCurrentKeyInfo, svg: SVGGElement) => {
+
   handleKey(svg, ({ id, classList }) => {
+    const formatId = compose(toHump, tailSVGID)(id).toLowerCase()
+    const formatCode = removeKey(current?.code.toLowerCase() || '')
+
     let timer: number
 
-    if (id.split('-')[0] === current) {
+    if (formatId === formatCode) {
       if (classList.contains(KEY_ITEM_TARGET_HINT)) {
         // 正确场景
         classList.add(KEY_ITEM_TARGET_CORRECT)
@@ -109,7 +114,7 @@ export const highlightCurretnKey = curry(({
       classList.remove(KEY_ITEM_TARGET_INCORRECT)
       classList.remove(KEY_ITEM_TARGET_CORRECT)
 
-      if (id.split('-')[0] === target) {
+      if (formatId === target) {
         classList.add(KEY_ITEM_TARGET_HINT)
       }
 
@@ -120,7 +125,7 @@ export const highlightCurretnKey = curry(({
   handleLetters(svg, ({ textContent, classList }) => {
     let timer: number
 
-    if (textContent === current) {
+    if (textContent?.toLowerCase() === current?.code.toLowerCase()) {
       if (classList.contains(KEY_ITEM_LETTER_HINT)) {
         // 正确场景
         classList.add(KEY_ITEM_LETTER_CORRECT)

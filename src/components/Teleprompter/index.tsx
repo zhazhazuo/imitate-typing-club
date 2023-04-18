@@ -3,11 +3,12 @@ import { compose } from "ramda"
 
 import Word from "../Word"
 import { mapQuestionsList } from "./logic"
+import { KeyInfoType } from "../TypingClub"
 import './index.scss'
 
 interface IProps {
   questionsList: string[][]
-  currentAnswerList: string[]
+  currentAnswerList: KeyInfoType[]
 }
 
 interface IDefaultProps {

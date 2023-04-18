@@ -1,3 +1,4 @@
+import { KeyInfoType } from '../../App'
 import { LetterStatusEnum } from '../Letter'
 import { Props as WordProps } from '../Word'
 
@@ -9,7 +10,7 @@ import { Props as WordProps } from '../Word'
  */
 export const mapQuestionsList = (
   questionsList: string[][],
-  currentAnswerList: string[]
+  currentAnswerList: KeyInfoType[]
 ): WordProps['letterList'][] => {
 
   return questionsList.reduce<WordProps['letterList'][]>((acc, question) => {
@@ -20,8 +21,8 @@ export const mapQuestionsList = (
 
       const isHint = resultIndex === currentAnswerList.length || (!currentAnswerList.length && resultIndex === 0)
       const isNormal = !currentAnswerList[resultIndex]
-      const isCorrect = item === currentAnswerList[resultIndex]
-      const isIncorrect = item !== currentAnswerList[resultIndex]
+      const isCorrect = item === currentAnswerList[resultIndex]?.key
+      const isIncorrect = item !== currentAnswerList[resultIndex]?.key
 
       // 注意以下顺序不可随意变动
 
