@@ -1,10 +1,10 @@
 import { last } from 'ramda'
 import { useEffect, useState } from 'react'
 
+import Teleprompter from './components/Teleprompter'
 import Keyboard from './components/Keyboard'
 import { throttle } from './common/utils'
 import './App.css'
-import Teleprompter from './components/Teleprompter'
 
 const targetKeyList = ['q', 'w', 'q', 'w']
 
@@ -31,10 +31,12 @@ function App() {
 
   return (
     <div className="app">
+      {/* 提词器区域 */}
       <div className='app__teleprompter'>
         <Teleprompter questionsList={[targetKeyList]} currentAnswerList={currentKeyList} />
       </div>
 
+      {/* 键盘区域 */}
       <div className='app_keyboard'>
         <Keyboard targetKey={targetKeyList[currentKeyList.length]} currentKey={last(currentKeyList)} />
       </div>
