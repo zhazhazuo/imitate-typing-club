@@ -1,8 +1,8 @@
-export let throttle = (func: any, delay: number = 200) => {
+export const throttle = (func: any, delay: number = 200) => {
   let startTime = Date.now();
   return (...args: any[]) => {
-    let curTime = Date.now();
-    let interval = delay - (curTime - startTime);
+    const curTime = Date.now();
+    const interval = delay - (curTime - startTime);
     if (interval <= 0) {
       startTime = Date.now();
       return func(...args);
