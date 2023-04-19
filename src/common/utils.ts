@@ -25,3 +25,8 @@ export const removeKey = (string: string) => {
   const regex = /^key/
   return string.replace(regex, "")
 }
+
+export const disableEvent = (e: KeyboardEvent) => {
+  e.defaultPrevented
+  e.stopPropagation()
+}
